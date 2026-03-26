@@ -1,0 +1,48 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/base.html
+# Author: Adrian Rojas (rojasa@bu.edu), 11/25/2025
+# Description: Base template for the root record app.
+-->
+
+{% load static %}
+
+<html>
+  <head>
+    <title>Root Record</title>
+    <link rel="stylesheet" href="{% static 'rootrecord.css' %}">
+  </head>
+
+  <body>
+    <header class="app-header">
+    <div class="container header-inner">
+
+      <div class="brand">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAyVBMVEX///9sxI9CPU9FoYZCO05FpIhtyJFFpYhANExDn4ZCN0xuypJuxo9COU1ANkxAM0s1L0Q4MkYuJz4/L0pIQ1UwKkA8N0o3MUZKWlxCRFMqIzuCf4lclHhrwY7u7u/h4ONVfmxkrINWsIpfuIxDamdZinJNZGBHT1dhpH9Pa2NEj3xEdGxeWmiioKf09PVfnHvLys51cn5PS1utq7Ln5+mXlZ3R0NREloBEhndDU1pDYWK7ur+LiZJsaHVYVGNWgm5SdWhDb2lEfnL/mY4+AAAR1ElEQVR4nO1dh3LiSLtdRCsASpgosMAYm2TABAdwZPz+D3VbQCchjKC7Bb/rnqrdrdmZAR1/Oaj7v//+RzBuNF8m7/PR80d9+jn8+poVt5jNvobDz2n9ef507mc8BY2n5vv8uf75Ba5qpZLr5vP5crkMgAIUGgD+z3LlanTuxz0G4+ZkBIkV3Su3kl9zioGr93M/djw0358/i6DironFYoZFOTv3sx/C+GVen9WuIDdFOYoaQq1xbgr7MW7O68NKqVI+iRnCVfPcPKIxnow+i67LR+5iGY5fRsPSWi1F4OIYNufTUikfW3YggGXZEAYD+yIZjicfX1AzYzGzbMNxCgVb8brVTn91c/P9fX9/jXB//40oXg7D8fsUuPnfZRfIa02sWO3f3F/3Wj5EKqVpWi6nsfALl8UQ0quVflNNSM12oMCqq/vHVhsRMlOmaaYi0b4khuNJPV/ar5sA2EZBWfZvIDUzt+YVAxfE8OVjtpfempxdXV23/FQuJrUNzEthOJ7P3Pw+erZhdyE5U8sF6hif3ZphCzM8Z3nxUi+5kbYHZed41ZteOxDckdzCDM+XtY3fh3u003asNbucdgo3xNBBDMfn4dcYFaMCHwDQqawefTN3kuQohr3zMmzWryKsD8Y6a3nf0nhkh6A9IoalMzB8mV5FhD7LUTrX7dwxDjMWw8oZ+EWYHzAcSO+oeHCA4bWBPjppfp+75gcdZ/fe1wToJsXwHjFMtsZvTmth/YTG5920RJheNEMwTJDfU31HP4Ftdx59ccpJGKLaovyZHMHncth/AgfciDQ+muEKMZwmxe9dCfOzjO51Sgo9iFzH2jL8SIZfc3i1Y36dnqjQEMWwurX3/HMS/MbPlZAB2ka/JdZ5hhl6STKcFCsh+RVWbXni2zC0tgwrc+n8xvUaGyAsu9/mTTsPM0SlhSu9qz8psh7GgvopnV/KxG2a0otcfuOPEiNAUKi2JOvnhiEuD0tyC+DmjBWg4T1K9S8YGi6eylIL4BFrgbZynww/OvEuSiyeGtMSq6B92Q6UYoiSNvAlj+AL42KA4fUS4xckbSilkZeWzhkNBcZNKiEFXSNXRQzrsgjWGR9qdBOIEDS0ruSUZjx0aQE6N36SAgzCIUraJAX8pkKnoXYxkRDIMGyhpE1OwJ8wbV6nn6gFbhjicJiX0dOf0xpqgetkLXANEg4VCeFwREfBwMUkzg+60hs0Hy2KJ/hMEQRQQ5MXYIqu8MWHww+aoHGftIvZwEzJCxZ1miB4PIeGBmgrsoIFTdDyWon70C2o2klwsPigvKhRTTjKU9Cu8eBJbO1E26DTOY+P2TDErtQVSpD2os7qbPQChn3kSoW29Ok4WLg5jxPdwsStRJHt4Heq5Vv4PpcT3cCX0WibUE7GOTNB0qQRuGnSdC9HgtTsMC8sK20USblUuDkzQSpnE+ZoxkNC0BFO0Az28o5xXDlv+yzi5k5T0nNyVoLjvJnzH/ud1TElShspqbCZBZXKGKIDfc6/9xzLso372BSJoxGVs81JnLCWQumZWntlGOvYBgq9uMqBi0NQFJOzvZDRGfB8gRI0tVa/YKOGiFWNy1BDw1FBjqZRxE0ZAARWE2au1bHxsvYxPz0fORpBGc0ndqPAjq1IB6FpvaphMT3luAzJzp47EUGQSreda1FxIuBXsBQGVifmp5N4XxExWJuQ1rawSA/trxPmBz++FVNJtQ7+uwIIjokR2h0xKrq2vx1+hhO3I0La3UI2aUiot7q+EIKQnxPmBwwl/liAdDBEFBZUxSTEjZq59mpHP8F6rS/2ZxAzFFBYNIiXKYjwMpr/rdhhfoXq41GLU0LNkAQKY8VPUNOuPSPEzypUe+Zx7QIN5QgCJodzLEKry52NmlqvWwgtZlp29ei1TMoMudPuJ5LLWLxGCBPQzg4/55TFG2KGJW4zrGM/6sTP+/c8ln8DQgZoFTonTR3xeBvMeOv7Cfaj8XPiaJjao2eEFsOcExeLTF8RZoY41gOnzWOEQYQPKSgwqr0Th47aI1JS7mg4wlWvc88jQi31bbEREDjL0xentIfs9mN4h78NQOo2Dj9q5npdh118M5Tr06fiZnsJkBlyihC7GWBz+FHN77MKCmzrm2cx2syIMsMmDoU2R6yHHob1oLybp2Z7IcoMcTYDlJP7FlCArIIqhSrnXpGp3yGb5hyrvdSwm7k+VUdzj2wOGhgg5+ai2c6g6TbvhgJuAIPlic8UWGBIQfkX30z9Fa/R8M3vyRTGOK0zY+bCFujwKmjwqe30D4oVJb4WDbZC67S6XkutWAu0wfVp78Ky0NUlMsMKV8r2ghwpjBSnPFeu1WWqJOD0RYz8oQjTSIScDYwpFmH/hEhhavdsDDS6PTEtrLS6QAz5BhZNnHIXTkhINb/DaCgoCNrMNG/TOFYAlytlq/OIMNdjXIy43WjTT6dV1OzmW+5ukFh4tBWa2jejocC4MQW1yU09nR4gP8MXK55RRmr1j324QEMZC/ROLZJ2CbYzafUfMkOXZ6o2LuLnO1aEuRaroYWVwK0pKMI0riu4lkrfUbQ/trI3c9eMi7EscXMc6GYy6fSrmFiBo73xeNQDmqkVbYLA6QgUoOlDgioufrnqCrxVArzjupjtKh3lgS128zTQURUpKd85ESM08DWOWprRWh7dqrA9obvRax1N46ybby8Y958KxwxitEeb0VAhWRohCEOhMCV9QfnMMaEiFAWBdXJNuQeBjqZ1XBpWeIpfnM848R2hmWJKQVv06vBGR0V5UnTkwxFLF6bP+BhH9OpwEOtZJeXJunHpa9/EXv1oM2Heif0X4xJcGyFkiJW0zDO9/0AZW+zCMNdSKCcKLPHb+/qG4AArKY8nHc+QknZjfr3Wo49TlbC9vzVCWDiJ8aSouM/+i/ek2iM9cZGxvb8xwnQ6gwonvkOTcFmRHcRyNNo1FSWAsxK++42MkKruBeWknhqnumfaFcD5Fv4Om5lSEUM0NeRrsjXQdpB1p94eflrtm6olQEHCG0KmviWYzqCMDXCdCoULp+xCVQ9+fe6GivNAZKmECW69DPQzZKbGVd1/lNHjwh/aATU1NZqglFegCMF0mvgZrhYUqu6tKlT/20MEqX6F3W1LINjGBCk/w1VWPKEWlPUQGPivMsyxBEXu1e4SpPwM30wNm6ExUA+oKaOiwle/wwTTOJ/ha9CQlM1bf7i+/7GhF6UI9oXTCxFU8dCQcykYjdSs5cZJ71U97Z4i6PQlvOIVjCgIMjgzrHH5mTF65uy/TZzdFxKZTMbpS3iJjZEgVTdxbq43UYcGRsP0L0LUHimChvhMLUwwreILBTiHhsjRAOV1+9GRQtR6VEtGQirKxsGAIJ6K8i6Y4LTbQ8lgJkKIWkuRraIsQRjt0RfyLiOiqaFVxdngrjs12xRBQwJBM6WzBIkIuc9LQq4UOZp0ZEzsWhRBEZPrEEFfT4eAuxe8hws0UM6W/VHJx7N6apod0pOxO6LphaPEWo3wipDicr5d8YQLiwHFkNXT3Ip01ay4jY5jCIZNMBiKYhHyblviDoZDf0uG9qew4qUICs9Fd0yQtULuo9dJVspYAmWKWo9UvMATXk3samgAXDbxL8zikYwXsnWUVjNulGdhMZpf6jaCH6l8BWx1o3AIlmroW7bP4BM3esTbkHEJ+moEQarDxm2FZGJhvYX99Yai1ideRtxLbFt+qV0Xs7ZCPLgXcRzU5244RD/IwNvQ9YTgzr0ZbYEQr/gFRRHvUn5tPyz7sKMvkKLWIum23RGaysAgHylAqDy4tBdySAsJ+DtZRTqj4zfiRAfCfQoa6OgCq01FxFlJqBmMaycGb8TLAK53E0L8/CgPikB+qkDA4RBjPLIY7DKknDZwjlvROMRvnwDhlxI3UxJxsMC4tp+h+prFP03nW9QW1+/yg1+K3YyYl9LxNpvzuvtlHu1lxPBLtffa3/ZL8bIs4Nrxwni62stQvSM6qoh4VRaKr73Pf2IdJYYh6OD8/QxJwznYX+AO9SZM/34zvy0owxB0nBdem3XCX54hOgpj5S1X99cMrE89SI/WUTFu5jeG5B2O9Twjk771Tyzt4V/zbw9p55YgpaOiDtlp7tFSdYDDLgDr3zqJI9RNvx1LepsvJedJVEQdqrfXDomOOiQX0Nup2CTN4Pa79q1+2PaivtQVdvLjHoZkBULJ0kVHJqO3/f039yFqUHZ+O3AsR7CDInwjOirumhwSDwfR6gK80FNCkrfttu+vibBYk/MDboHojmKXZgKFyNPKonMayqVF56vw6XX99hZSpQB/revBgO5YbpvvpIywJPJKajeCCdUHst4ii3BCNbPms/0PD6joJPaA2UhZER1VeB88Lsj+GvxWoRc7zBBD0hCm3Izz87sIxRF8o4xQ7Pmyw50aXx0wsT4ZgqRkUlzB1xzhwcwdCgpqFeso2C04pED/Id0g4ac842UaFPaojDv7b7ezIYUg6VsIO4uNAPdLu4ghMXkvEX6QICkoJJyXP0IMle3KKokUTmQoFA51QG1y1sTf4oTnFs6Gjoq/DO1mSCdILRuLS0cJ8BkDm8SUEmFUb0o8dJpgXsZ9eE/sKgbJLA5lM4IILigVLQ9l3P8zZkI+tQCRSKTQqVYJLCjkXHD0SY9myNAne5eACNUfal+8LDxObIGGTwA6FlqECSSk6j9qjaxclHWTOA4XsBBUiQgTCPZ0LqoAKdeqrDFBztQa6EmKUH3t0jaYl3dRXBO/irAgr4ntThNFQ18otBeVpqIB0Ddl/1Ebq7Idqf5AH9Nankm96g8tRYEqnqVl7+RaoZpZUqmokp/Jveoer+5R5wbLFaG6APS7tRUpgZ7ChLnrb+1zdrYWhPLL3GXpbytJuyMOgRwXgRAxaRMHfcG8HK3UErj1NnylvcyiQn99YwRYln8l7H/US8DIz0irC9XMA3sQX34mM0pgvLsMQSCrtFf1RTfLKExpKtnHbPHEXq0dsVkjht8gxK9cE9na/hVf9BfLifaqOliGzqnLfyWioWs8M1enSggVqrpYZkMnYV59JKOhazARUbyf0dM/3RA/JV8UcjZ+XOBd7wCeWIKq+vrPy4YCUjlRAQaYknhh3a0nZILo6ZnF0skqIbhDybeG74KJF8u7QUZX+Vmqambx5hk7R+nnFfk32++gwdyBm816y4eBysVS1dOQXtj6AgWtJa2gG3yyaQ2wsllr+bDIpE+gqULhDR6W2Qh6MEmbyr30fS8+yjsPE7DMdt8eBq9pPS5PSC79OnioKo4VTna3/JILgSFEPA6mqXSrdz9rnvo+zYXM4O9mBouHt64ChRdFT8nX6mfjx9yutssSWJAnULzl28PPYvCaCbhSyLwOFj8Pb0tPCf4YiGSngIr7cSb9XGOUj3wsludGb7OOA92/53ndbhf+W7GCX0PAmiGaW4CyO5ufxb9gfO6a4e90A8YBlD0iY/5wpTJNNIGJQAM/ZtEt5X+RxfEA+drX/JzqucE7ykthwT35KFbccgzRxEC54s6ez+ddKOA38t11V685n85ct8xHEpTd8nB0EfT+Ix1TstM5bs7rX6VS5Uj7xMJzr2b19/MrJwK+OKfC1tzjyWhaqZXc/BFKC8qVUg3U55civA1weRi1BzF+ef8YzpR8QLT8i0jhb1ZKrjKbjiZyG9inAJf4+w+bajRf5s/16XAGKlelkutWKvktKq5buiqVZ8Ppx2jSvDxya2AzPLyNNG48PTUn7+/z+Wg0eob/jObz90nzqXHeeH4IqNUm5D2qSwReZuc8fuJygQ/G4H3x/WKB4j3/RUqXCuxoZCwkXQRQKzGfWI89YTyV/7qjwcdGVC4r0xKH+XZ1D/AeA3OxwK6U62aFS8b0z7tSFCx4j/K5WOC5UyIrA+cA3hEWvyR/IcB5N/dZPpcKPFirnftJZAGFQ8U995PIwvOfD4co4P/dcIgDvuB34i4HaCjzZ2snvA/Fd2fbJePPpzT4FCX3r9a/+BSlP1vh4xMH/mxaipe8BZ7TcFl4+vOJNy4tBJ1ZdHn4f4b/+yAM/2ovkZT4f5Uhivi8J7tfMD42XQyhp/pcFsbDkgJA6c/WvwHmX8rwr5RO/wdKIvT54Cg0QQAAAABJRU5ErkJggg==" 
+          class="brand-icon"/>
+        <div>
+          <h1>Root Record</h1>
+          <p class="muted-text">Track your plants and their care needs</p>
+        </div>
+      </div>
+
+      <nav class="nav-tabs">
+        <a href="{% url 'species_list' %}" class="nav-tab {% if request.path == '/rootrecord/species/' %}active{% endif %}">
+          🌿 Species
+        </a>
+        <a href="{% url 'plant_list' %}" class="nav-tab {% if request.path == '/rootrecord/plants/' %}active{% endif %}">
+          🪴 My Plants
+        </a>
+        <a href="{% url 'task_list' %}" class="nav-tab {% if request.path == '/rootrecord/tasks/' %}active{% endif %}">
+          ✔️ Care Tasks
+        </a>
+        <a href="{% url 'log_list' %}" class="nav-tab {% if request.path == '/rootrecord/logs/' %}active{% endif %}">
+          📋 Care History
+        </a>
+      </nav>
+
+    </div>
+  </header>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/species_list.html
+# Author: Adrian Rojas (rojasa@bu.edu), 12/2/2025
+# Description: HTML file to display all species.
+-->
+
+{% extends "rootrecord/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="topic-header">
+    <h2>🌿 Plant Species Library</h2>
+    <p class="muted-text">Reference list</p>
+  </div>
+
+  {% if species_list %}
+
+    <div class="species-grid mt-4">
+
+      {% for sp in species_list %}
+        <div class="card species-card">
+
+          <h3>{{ sp.name }}</h3>
+          <p class="accent-text">{{ sp.common_name }}</p>
+
+          <div class="species-meta mt-2">
+            <div>☀️ Light: {{ sp.light_req|title }}</div>
+            <div>💧 Water every {{ sp.water_interval }} days</div>
+          </div>
+
+          <a href="{% url 'species_detail' sp.pk %}" class="button-link center mt-3">
+            View Details →
+          </a>
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+  {% else %}
+
+    <div class="center empty-state">
+      <div class="emoji">🌿</div>
+      <p class="muted-text">No species added by admin.</p>
+    </div>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

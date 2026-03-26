@@ -1,0 +1,32 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/species_detail.html
+# Author: Adrian Rojas (rojasa@bu.edu), 12/2/2025
+# Description: HTML file to display a single species.
+-->
+{% extends "rootrecord/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="card center mt-3">
+
+    <h2>{{ species.name }}</h2>
+    <p class="accent-text">{{ species.common_name }}</p>
+
+    <p class="mt-2">☀️ Light: {{ species.light_req|title }}</p>
+    <p>💧 Water every {{ species.water_interval }} days</p>
+
+    {% if species.notes %}
+      <p class="muted-text mt-3">{{ species.notes }}</p>
+    {% endif %}
+
+    <a href="{% url 'species_list' %}" class="button-secondary mt-3 center">
+      ← Back to species list
+    </a>
+
+  </div>
+
+</div>
+
+{% endblock %}

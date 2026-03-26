@@ -1,0 +1,100 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/carelog_list.html
+# Author: Adrian Rojas (rojasa@bu.edu), 12/2/2025
+# Description: HTML file to display a list of logs
+-->
+
+{% extends "rootrecord/base.html" %}
+{% block content %}
+
+<div class="container">
+
+  <div class="topic-header">
+    <h2>📋 Care History</h2>
+    <p class="muted-text">Your logged plant care actions</p>
+  </div>
+  <form method="GET" class="filter-grid mt-3 mb-4">
+
+    <div>
+      <label>Filter by Plant</label>
+      <select name="plant">
+        <option value="">All Plants</option>
+        {% for p in plant_options %}
+          <option value="{{ p.id }}" {% if request.GET.plant == p.id|stringformat:"s" %}selected{% endif %}>
+            {{ p.nickname }} ({{ p.species.name }})
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label>Filter by Task Type</label>
+      <select name="task_type">
+        <option value="">All Types</option>
+        {% for value,label in task_type_options %}
+          <option value="{{ value }}" {% if request.GET.task_type == value %}selected{% endif %}>
+            {{ label }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label>Filter by Species</label>
+      <select name="species">
+        <option value="">All Species</option>
+        {% for s in species_options %}
+          <option value="{{ s.id }}" {% if request.GET.species == s.id|stringformat:"s" %}selected{% endif %}>
+            {{ s.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="filter-actions">
+      <button type="submit">Apply Filters</button>
+      <a href="{% url 'log_list' %}" class="button-secondary">Reset</a>
+    </div>
+
+  </form>
+
+  {% if grouped_logs %}
+    <div class="logs-wrapper">
+      {% for date, logs in grouped_logs.items %}
+        <div class="mt-4">
+
+          <div class="flex-center gap-1">
+            <span>📆</span>
+            <h3>{{ date|date:"l, F j, Y" }}</h3>
+          </div>
+
+          <div class="log-group">
+            {% for log in logs %}
+              <div class="card hover-card">
+                
+                <a href="{% url 'log_detail' log.pk %}">
+                    <h4>{{ log.care_task.task|title }} – {{ log.care_task.plant.nickname }}</h4>
+                </a>
+                <p class="muted-text">{{ log.care_task.plant.species.name }}</p>
+
+                {% if log.notes %}
+                  <div class="note-card mt-2">
+                    {{ log.notes }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="center mt-5 muted-text">
+      <p>No care logs match your filters.</p>
+    </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

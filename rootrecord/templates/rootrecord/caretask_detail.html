@@ -1,0 +1,54 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/caretask_detail.html
+# Author: Adrian Rojas (rojasa@bu.edu), 12/2/2025
+# Description: HTML file to show a single task
+-->
+{% extends "rootrecord/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="card mt-3">
+
+    <h2>{{ task.task|title }}</h2>
+    <p class="muted-text">for {{ task.plant.nickname }}</p>
+
+    <p class="mt-2">📅 Due: {{ task.due|date:"M d, Y" }}</p>
+
+    {% if task.completed %}
+        <p>✔️ Completed</p>
+    {% elif task.is_overdue %}
+        <p>🚨 OVERDUE: NEEDS ATTENTION</p>
+        <a href="{% url 'log_create' task.pk %}" class="button-secondary mt-4 center">
+      Complete Task
+    </a>
+    {% else %}
+        <a href="{% url 'log_create' task.pk %}" class="button-secondary mt-4 center">
+      Complete Task
+    </a>
+    {% endif %}
+
+    {% if logs %}
+      <h3 class="mt-4">Care Log</h3>
+      <ul class="log-list mt-2">
+        {% for log in logs %}
+        <a href="{% url 'log_detail' log.pk %}">
+          <li class="log-item">
+            <strong>{{ log.timestamp|date:"M d, Y" }}</strong> — {{ log.notes }}
+          </li>
+        </a>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <a href="{% url 'task_delete' task.pk %}" class="button-secondary mt-3 destructive-link center">Delete Task</a>
+    <a href="{% url 'plant_detail' task.plant.pk %}" class="button-secondary mt-3 center">
+      ← To Plant
+    </a>
+
+  </div>
+
+</div>
+
+{% endblock %}

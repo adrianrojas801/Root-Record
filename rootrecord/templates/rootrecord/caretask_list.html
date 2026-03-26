@@ -1,0 +1,88 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/caretask_list.html
+# Author: Adrian Rojas (rojasa@bu.edu), 12/8/2025
+# Description: HTML file to display all tasks
+-->
+
+{% extends "rootrecord/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="topic-header">
+    <h2>✔️ Care Tasks</h2>
+    <p class="muted-text">View your upcoming and completed care tasks</p>
+  </div>
+  <br>
+  {% if tasks %}
+
+    <div class="task-list mt-3">
+
+      {% for task in tasks %}
+
+        <div class="task-card
+          {% if task.completed %} task-completed
+          {% elif task.is_overdue %} task-overdue
+          {% endif %}
+        ">
+
+          <!-- Status icon -->
+          <div class="status-icon">
+            {% if task.completed %}
+              ✔️
+            {% elif task.is_overdue %}
+              🚨
+            {% else %}
+              ▪️
+            {% endif %}
+          </div>
+
+          <div class="flex-1">
+            <h3>{{ task.task|title }}</h3>
+            <p class="muted-text">for <strong>{{ task.plant.nickname }}</strong></p>
+
+            <div class="task-date mt-1
+              {% if task.is_overdue %} text-danger {% endif %}
+            ">
+              📅
+              <span>
+                {% if task.completed %}
+                  Completed
+                {% elif task.is_overdue %}
+                  Overdue
+                {% else %}
+                  Due
+                {% endif %}
+                : {{ task.due|date:"M d, Y" }}
+              </span>
+            </div>
+          </div>
+
+          <a href="{% url 'task_detail' task.pk %}" class="button-link">
+            Details →
+          </a>
+
+        </div>
+
+      {% empty %}
+        <div class="center mt-5 muted-text">
+          <div style="font-size: 3rem;">🪴</div>
+          <p>No tasks yet.</p>
+        </div>
+      {% endfor %}
+
+    </div>
+
+  {% else %}
+
+    <div class="center mt-5 muted-text">
+      <div style="font-size: 3rem;">🪴</div>
+      <p>No tasks yet.</p>
+    </div>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

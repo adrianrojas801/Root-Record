@@ -1,0 +1,78 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/plant_detail.html
+# Author: Adrian Rojas (rojasa@bu.edu), 12/8/2025
+# Description: HTML file to display a single plant.
+-->
+
+{% extends 'rootrecord/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="card center">
+
+    <h1>{{ plant.nickname }}</h1>
+
+    {% if plant.get_image_url %}
+      <img src="{{ plant.get_image_url }}" width="250" style="border-radius: var(--radius); margin-top: 1rem;" />
+    {% endif %}
+
+    <p class="mt-2"><strong>Location:</strong> {{ plant.location }}</p>
+
+    <p><strong>Species:</strong>
+        {{ plant.species.name }}
+    </p>
+
+    <div class="action-row mt-2">
+        <a href="{% url 'plant_update' plant.pk %}" class="icon-link">Edit 🖉</a>
+        <a href="{% url 'plant_delete' plant.pk %}" class="destructive-link destructive-icon">Delete</a>
+    </div>
+
+    <a href="{% url 'plant_list' %}" class="button-secondary mt-3 center">
+      ← To Plants
+    </a>
+
+  </div>
+
+  <div class="mt-4">
+  <h2>Care Tasks</h2>
+
+  {% if tasks %}
+    <ul class="task-list mt-2">
+      {% for task in tasks %}
+
+        <li class="task-card-link
+          {% if task.completed %} task-completed
+          {% elif task.is_overdue %} task-overdue
+          {% endif %}
+        ">
+          <a href="{% url 'task_detail' task.pk %}">
+            {% if task.completed %}
+              ✔️
+            {% elif task.is_overdue %}
+              🚨
+            {% else %}
+              ▪️
+            {% endif %}
+            {{ task.task|title }} — due {{ task.due|date:"M d, Y" }}
+          </a>
+        </li>
+
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted-text mt-2 center">No tasks for this plant.</p>
+  {% endif %}
+</div>
+
+
+  <div class="center mt-4">
+    <a href="{% url 'task_create' plant.pk %}" class="button-secondary">
+      Create New Care Task
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}

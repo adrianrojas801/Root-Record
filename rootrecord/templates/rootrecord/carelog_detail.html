@@ -1,0 +1,49 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/carelog_detail.html
+# Author: Adrian Rojas (rojasa@bu.edu), 12/2/2025
+# Description: HTML file to display a single log
+-->
+
+{% extends 'rootrecord/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+  
+
+  <div class="card mt-3">
+    <h1>Care Log</h1>
+    <p><strong>Plant:</strong>
+        <a href="{% url 'plant_detail' log.care_task.plant.pk %}">
+            {{ log.care_task.plant.nickname }}
+        </a>
+    </p>
+    <p><strong>Task:</strong>
+      <a href="{% url 'task_detail' log.care_task.pk %}">
+        {{ log.care_task.task }}
+      </a>
+    </p>
+
+    <p><strong>Date:</strong> {{ log.timestamp }}</p>
+
+    {% if log.get_image_url %}
+      <div class="mt-2 center">
+        <img src="{{ log.get_image_url }}" width="250" style="border-radius: var(--radius);" />
+      </div>
+    {% endif %}
+
+    <p class="mt-2">{{ log.notes }}</p>
+    <div class="action-row mt-2">
+        <a href="{% url 'log_update' log.pk %}" class="icon-link">Edit 🖉</a>
+    </div>
+
+    <a href="{% url 'log_list' %}" class="button-secondary mt-4 center">
+      ← Care History
+    </a>
+
+  </div>
+
+</div>
+
+{% endblock %}

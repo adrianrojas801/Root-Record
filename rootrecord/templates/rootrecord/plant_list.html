@@ -1,0 +1,66 @@
+<!-- 
+# File: rootrecord/templates/rootrecord/plant_list.html
+# Author: Adrian Rojas (rojasa@bu.edu), 12/2/2025
+# Description: HTML file to display all plants.
+-->
+
+{% extends "rootrecord/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="topic-header">
+    <h2>🪴 My Plants</h2>
+    <p class="muted-text">Your personal plant collection</p>
+  </div>
+
+  {% if plants %}
+
+    <div class="plant-grid mt-4">
+
+      {% for plant in plants %}
+        <div class="card plant-card">
+
+          {% if plant.image_file %}
+            <img src="{{ plant.get_image_url }}" alt="{{ plant.nickname }}" class="plant-thumb">
+          {% endif %}
+
+          <div class="mt-2">
+            <h3>{{ plant.nickname }}</h3>
+            <p class="accent-text">{{ plant.species.name }}</p>
+          </div>
+
+          <div class="plant-meta mt-2">
+            <div>Added: {{ plant.timestamp|date:"M d, Y" }}</div>
+            <div>📍 {{ plant.location }}</div>
+          </div>
+
+          <a href="{% url 'plant_detail' plant.pk %}" class="button-link center mt-3">
+            View Details →
+          </a>
+
+        </div>
+      {% endfor %}
+
+    </div>
+    <br>
+    <a href="{% url 'plant_create' %}" class="button-primary">
+        ➕ Add Plant
+    </a>
+
+  {% else %}
+
+    <div class="center empty-state">
+      <div class="emoji">🌱</div>
+      <p class="muted-text">No plants yet. Start your collection!</p>
+      <a href="{% url 'plant_create' %}" class="button-primary mt-2">
+        Add your first plant
+      </a>
+    </div>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}
