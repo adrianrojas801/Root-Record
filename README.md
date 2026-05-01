@@ -1,24 +1,24 @@
-# 🪴 Root Record
+# Root Record
 
 A full-stack Django web application for tracking your personal plant collection and managing care schedules. Root Record lets plant owners log every watering, fertilizing, pruning, and repotting event — with photo support, filtering, and overdue task alerts.
 
 ---
 
-## 📸 Features
+## Features
 
-### 🌿 Species Library
+### Species Library
 - Browse a curated reference list of plant species managed by the admin
 - Each species includes scientific name, common name, light requirements, recommended watering interval, and care notes
 - Detail page for each species with all relevant care info at a glance
 
-### 🪴 My Plants
+### My Plants
 - Add and manage your personal plant collection
 - Upload a photo for each plant
 - Track nickname, location in your home, and species
 - View all care tasks associated with a plant from its detail page
 - Edit or delete plants (deletion cascades to all associated tasks and logs)
 
-### ✔️ Care Tasks
+### Care Tasks
 - Create tasks for individual plants: **Water**, **Fertilize**, **Prune**, or **Repot**
 - Set a due date for each task
 - Tasks are automatically sorted: **Overdue → Upcoming → Completed**
@@ -29,7 +29,7 @@ A full-stack Django web application for tracking your personal plant collection 
 - Mark a task complete by logging it (see Care History)
 - Edit or delete tasks at any time
 
-### 📋 Care History
+### Care History
 - Every completed task generates a care log with a timestamp
 - Add notes and an optional photo to each log entry
 - Logs are grouped by date for easy browsing
@@ -41,7 +41,7 @@ A full-stack Django web application for tracking your personal plant collection 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -55,7 +55,7 @@ A full-stack Django web application for tracking your personal plant collection 
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 rootrecord_project/
@@ -102,7 +102,7 @@ rootrecord_project/
 
 ---
 
-## 🗃️ Data Models
+## Data Models
 
 ### `Species`
 | Field | Type | Description |
@@ -140,7 +140,7 @@ rootrecord_project/
 
 ---
 
-## 🔗 URL Structure
+## URL Structure
 
 | URL | View | Description |
 |---|---|---|
@@ -165,7 +165,7 @@ rootrecord_project/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.10+
